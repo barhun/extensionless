@@ -1,0 +1,25 @@
+{
+  "name": "extensionless",
+  "version": "2.0.2",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js",
+    "./register": "./src/register.js"
+  },
+  "license": "MIT",
+  "description": "Node.js loader for import specifiers as file paths without extensions or as directory paths",
+  "keywords": [
+    "node", "nodejs",
+    "module", "loader", "resolver", "resolution",
+    "esm", "es6", "esnext", "ecmascript",
+    "extension", "filename", "directory", "path"
+  ],
+  "homepage": "https://github.com/barhun/extensionless#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barhun/extensionless.git"
+  },
+  "scripts": {
+    "test": "node --import=./src/register.js test"
+  }
+}

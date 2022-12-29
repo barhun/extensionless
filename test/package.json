@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "imports": {
+    "#sub/*": "./dir/sub/*"
+  },
+  "extensionless": {
+    "lookFor": ["js", "mjs"]
+  }
+}
