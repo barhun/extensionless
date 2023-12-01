@@ -12,6 +12,6 @@ import './dir/index.json' assert {type: 'json'}
 
 import './dir/ext'
 
-import './dir/sub/rel'
+import '#sub/rel'
 
 console.log('✅ \x1b[32m%s\x1b[0m', 'Loaded all the modules successfully.')
