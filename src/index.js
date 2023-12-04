@@ -10,11 +10,10 @@ export function globalPreload({port}) {
 
 let indexFiles, candidates, pkgJsonURL, aliases
 export async function initialize(data) {
-  let {lookFor, jsonPath, imports} = await getConfig(data)
+  let {lookFor, pkgJsonPath, imports} = await getConfig(data)
 
-  indexFiles = [lookFor.map(e => `index.${e}`), ['index.json']]
-  candidates = indexFiles.map(i => i.map(f => extname(f)).concat(i.map(f => `/${f}`)))
-  pkgJsonURL = 'file://' + jsonPath, aliases = Object.entries(imports ?? {}).map(([k, v]) => [k.split('*'), (v.node ?? v.default ?? v).split('*')]).filter(([k, v]) => k.length < 3 && k.length === v.length)
+  indexFiles = [lookFor.map(e => `index.${e}`), ['index.json']], candidates = indexFiles.map(i => i.map(f => extname(f)).concat(i.map(f => `/${f}`)))
+  pkgJsonURL = 'file://' + pkgJsonPath, aliases = Object.entries(imports ?? {}).map(([k, v]) => [k.split('*'), (v.node ?? v.default ?? v).split('*')]).filter(([k, v]) => k.length < 3 && k.length === v.length).sort(([k1], [k2]) => k1.length < k2.length || k1[0].length > k2[0].length || k1[0].length === k2[0].length && k1[1]?.length > k2[1]?.length ? -1 : 1)
 }
 
 let winAbsPath = /^[/\\]?[a-z]:[/\\]/i, relSpecs = ['.', '..']
@@ -24,19 +23,20 @@ let knownExts = ['.js', '.cjs', '.mjs', '.json', '.node', '.wasm'], empty = [[],
 export async function resolve(specifier, context, nextResolve) {
   let alias = specifier.startsWith('#') && (await initPromise, aliases.find(([k]) => k[1] !== undefined ? specifier.length > k[0].length + k[1].length && specifier.startsWith(k[0]) && specifier.endsWith(k[1]) : specifier === k[0]))
   let spec = alias ? alias[1][0] + (alias[0][1] !== undefined ? specifier.substring(alias[0][0].length, specifier.length - alias[0][1].length) + alias[1][1] : '') : specifier
-  let prefix = winAbsPath.test(spec) ? 'file://' : ''
+  let error, prefix = winAbsPath.test(spec) ? 'file://' : ''
 
   if (!prefix && !relSpecs.includes(spec) && !specStarts.some(s => spec.startsWith(s))) {
-    return await nextResolve(spec)
+    try {return await nextResolve(spec)} catch (e) {error = e}
   }
 
-  let selfURL = new URL(prefix + spec, alias ? pkgJsonURL : context.parentURL).href
+  let trySpec = error ? spec : new URL(prefix + spec, alias ? pkgJsonURL : context.parentURL).href
   let {type} = context.importAttributes ?? context.importAssertions
-  let postfixes = (await initPromise, selfURL.endsWith('/') ? indexFiles : knownExts.includes(extname(selfURL)) ? empty : candidates)
+  let postfixes = (await initPromise, trySpec.endsWith('/') ? indexFiles : knownExts.includes(extname(trySpec)) ? empty : candidates)
 
   for (let postfix of postfixes[+(type === 'json')]) {
-    try {return await nextResolve(selfURL + postfix)} catch {}
+    try {return await nextResolve(trySpec + postfix)} catch {}
   }
 
-  return await nextResolve(selfURL)
+  if (error) throw error
+  return await nextResolve(trySpec)
 }
