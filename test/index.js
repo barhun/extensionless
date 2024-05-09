@@ -1,14 +1,14 @@
 import './dir'
-import './dir' assert {type: 'json'}
+import './dir' with {type: 'json'}
 
 import './dir/'
-import './dir/' assert {type: 'json'}
+import './dir/' with {type: 'json'}
 
 import './dir/index'
-import './dir/index' assert {type: 'json'}
+import './dir/index' with {type: 'json'}
 
 import './dir/index.js'
-import './dir/index.json' assert {type: 'json'}
+import './dir/index.json' with {type: 'json'}
 
 import './dir/ext'
 

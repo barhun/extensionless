@@ -1,11 +1,11 @@
 import '.'
-import '.' assert {type: 'json'}
+import '.' with {type: 'json'}
 
 import './'
-import './' assert {type: 'json'}
+import './' with {type: 'json'}
 
 import '..'
-import '..' assert {type: 'json'}
+import '..' with {type: 'json'}
 
 import '../'
-import '../' assert {type: 'json'}
+import '../' with {type: 'json'}

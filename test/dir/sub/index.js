@@ -1,2 +1,2 @@
 import '../mod'
-import '../mod' assert {type: 'json'}
+import '../mod' with {type: 'json'}

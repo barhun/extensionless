@@ -32,7 +32,7 @@ You can now use import specifiers as file paths without extensions or as directo
 import mod from './mod'
 // ['./mod.js', './mod/index.js']
 
-import mod from '../mod' assert {type: 'json'}
+import mod from '../mod' with {type: 'json'}
 // ['../mod.json', '../mod/index.json']
 
 import api from '/apps/api'
@@ -72,7 +72,7 @@ import up from '..'
 import mod from './mod/'
 // ['./mod/index.js']
 
-import mod from '../mod/' assert {type: 'json'}
+import mod from '../mod/' with {type: 'json'}
 // ['../mod/index.json']
 
 import api from '/apps/api/'
@@ -90,7 +90,7 @@ This loader also adds support for Windows path resolution with which you can use
 import mod from '.\\mod'
 // ['./mod.js', './mod/index.js']
 
-import mod from '..\\mod\\' assert {type: 'json'}
+import mod from '..\\mod\\' with {type: 'json'}
 // ['../mod/index.json']
 
 import api from 'C:/apps/api'

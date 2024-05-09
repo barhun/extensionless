@@ -30,5 +30,5 @@ export async function getConfig({argv1} = {}) {
     lookFor = defaults.lookFor, warn('lookFor', 'an array of alphanumeric strings')
   )
 
-  return {lookFor, pkgJsonPath: pkgJson?.path, imports: pkgJson?.body.imports}
+  return {lookFor, pkgJsonPath: pkgJson?.path}
 }
