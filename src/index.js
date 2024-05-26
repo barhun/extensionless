@@ -27,8 +27,8 @@ export async function resolve(specifier, context, nextResolve) {
     try {return await nextResolve(specifier)} catch (e) {error = e}
   }
 
-  let trySpec = error ? specifier : new URL(prefix + specifier, context.parentURL).href
   let {type} = context.importAttributes ?? context.importAssertions
+  let trySpec = error ? specifier : new URL(prefix + specifier, context.parentURL).href
   let postfixes = (await initPromise, trySpec.endsWith('/') ? indexFiles : knownExts.includes(extname(trySpec)) ? empty : candidates)
 
   for (let postfix of postfixes[+(type === 'json')]) {

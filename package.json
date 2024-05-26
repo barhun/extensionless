@@ -1,6 +1,6 @@
 {
   "name": "extensionless",
-  "version": "1.9.7",
+  "version": "1.9.9",
   "type": "module",
   "exports": {
     ".": "./src/index.js",
