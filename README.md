@@ -1,3 +1,35 @@
+
+<div align="right">
+  <details>
+    <summary >🌐 Language</summary>
+    <div>
+      <div align="center">
+        <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=en">English</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=zh-CN">简体中文</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=zh-TW">繁體中文</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=ja">日本語</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=ko">한국어</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=hi">हिन्दी</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=th">ไทย</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=fr">Français</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=de">Deutsch</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=es">Español</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=it">Italiano</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=ru">Русский</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=pt">Português</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=nl">Nederlands</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=pl">Polski</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=ar">العربية</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=fa">فارسی</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=tr">Türkçe</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=vi">Tiếng Việt</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=id">Bahasa Indonesia</a>
+        | <a href="https://openaitx.github.io/view.html?user=barhun&project=extensionless&lang=as">অসমীয়া</
+      </div>
+    </div>
+  </details>
+</div>
+
 Node.js loader for import specifiers as file paths without extensions or as directory paths
 
 &nbsp;
