@@ -10,13 +10,13 @@ npm i extensionless
 
 &nbsp;
 
-Start `node` with the following flag added.
+Start `node` with the following flag added:
 
 ```
 --import=extensionless/register
 ```
 
-Note: If `node` version is lower than `20.6.0`, this doesn't work and it needs this flag instead:
+Note: If `node` version is lower than `20.6.0`, that doesn't work and this flag is needed instead:
 
 ```
 --experimental-loader=extensionless

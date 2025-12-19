@@ -8,17 +8,16 @@ export function globalPreload({port}) {
   return 'port.postMessage({argv: process.argv, execArgv: process.execArgv})'
 }
 
-let indexFiles, candidates
+let defaultPostfixes, postfixesByType = {json: [['index.json'], ['.json', '/index.json']]}
 export async function initialize(data) {
   let {lookFor} = await getConfig(data)
 
-  indexFiles = [lookFor.map(e => `index.${e}`), ['index.json']]
-  candidates = indexFiles.map(i => i.map(f => extname(f)).concat(i.map(f => `/${f}`)))
+  defaultPostfixes = [lookFor.map(e => `index.${e}`), lookFor.map(e => `.${e}`).concat(lookFor.map(e => `/index.${e}`))]
 }
 
 let winAbsPath = /^[/\\]?[a-z]:[/\\]/i, relSpecs = ['.', '..']
 let specStarts = ['./', '../', '/', 'file://', 'https://', '.\\', '..\\', '\\']
-let knownExts = ['.ts', '.js', '.cjs', '.mjs', '.json', '.node', '.wasm'], empty = [[], []]
+let knownExts = ['.ts', '.js', '.cjs', '.mjs', '.json', '.node', '.wasm'], empty = []
 
 export async function resolve(specifier, context, nextResolve) {
   let error, prefix = winAbsPath.test(specifier) ? 'file://' : ''
@@ -29,9 +28,12 @@ export async function resolve(specifier, context, nextResolve) {
 
   let {type} = context.importAttributes ?? context.importAssertions
   let trySpec = error ? specifier : new URL(prefix + specifier, context.parentURL).href
-  let postfixes = (await initPromise, trySpec.endsWith('/') ? indexFiles : knownExts.includes(extname(trySpec)) ? empty : candidates)
 
-  for (let postfix of postfixes[+(type === 'json')]) {
+  let postfixes = trySpec.endsWith('/')
+    ? postfixesByType[type]?.[0] ?? (await initPromise, defaultPostfixes[0]) : knownExts.includes(extname(trySpec)) ? empty
+    : postfixesByType[type]?.[1] ?? (await initPromise, defaultPostfixes[1])
+
+  for (let postfix of postfixes) {
     try {return await nextResolve(trySpec + postfix)} catch {}
   }
 
